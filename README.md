@@ -8,6 +8,7 @@
 - [ ] Jellyfin
 - [ ] Torrent client
 - [x] Sonarr / Radarr (Still misses torrent client link + creating user account)
+- [ ] Wireguard ? (For safe remote access to internal network)
 
 ## Usage
 
@@ -32,9 +33,15 @@ No matter which option you choose, put your certificate in files/{BASE_URL.crt,B
 
 ### Installing
 
-The machine on which it will be setup needs to have Debian 11 and a ssh server running.
+Edit the inventories/hosts to fill with your details, then edit the inventories/host_vars/router.yaml to configure it as you wish.
 
-The user needs to have passwordless sudo perms
+The machine on which it will be setup needs to have Debian 11 and a ssh server running and a user with password-less sudo permissions.
+
+Then simply run:
+```
+$ ansible-playbook -i inventories/hosts setup.yaml
+```
+
 
 ## Tested on
 
