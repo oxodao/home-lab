@@ -2,11 +2,12 @@
 
 ## Features
 
-- Setup PiHole or something similar
-- LAN domain name resolution
-- CA for internal SSL certificates
-- Jellyfin
-- Sonarr / Radarr
+- [ ] Setup PiHole or something similar
+- [ ] LAN domain name resolution
+- [x] CA for internal SSL certificates
+- [ ] Jellyfin
+- [ ] Torrent client
+- [x] Sonarr / Radarr (Still misses torrent client link + creating user account)
 
 ## Usage
 

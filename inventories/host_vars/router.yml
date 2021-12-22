@@ -9,10 +9,31 @@ main_user: oxodao
 
 base_url: router.lan
 
-xdarr_apps:
-  - { app_name: sonarr, short_name: 'srr', port: 8989, image: 'lscr.io/linuxserver/sonarr' }
-  - { app_name: radarr, short_name: 'rrr', port: 7878, image: 'lscr.io/linuxserver/radarr' }
+xarr_apps:
+  - app_name: sonarr
+    short_name: 'srr'
+    port: 8989
+    image: 'lscr.io/linuxserver/sonarr'
+    config_db:
+      - { key: 'firstdayofweek', value: 1 }
+      - { key: 'calendarweekcolumnheader', value: "'ddd DD/MM'" }
+      - { key: 'shortdateformat', value: "'YYYY-MM-DD'" }
+      - { key: 'longdateformat', value: "'dddd D MMMM YYYY'" }
+      - { key: 'timeformat', value: "'HH:mm'" }
+
+  - app_name: radarr
+    short_name: 'rrr'
+    port: 7878
+    image: 'lscr.io/linuxserver/radarr'
+    config_db:
+      - { key: 'firstdayofweek', value: 1 }
+      - { key: 'calendarweekcolumnheader', value: "'ddd DD/MM'" }
+      - { key: 'shortdateformat', value: "'YYYY-MM-DD'" }
+      - { key: 'longdateformat', value: "'dddd D MMMM YYYY'" }
+      - { key: 'timeformat', value: "'HH:mm'" }
+      - { key: 'movieinfolanguage', value: 2 }
+      - { key: 'uilanguage', value: 2 }
 
 other_apps: []
 
-nginx_apps: "{{ xdarr_apps + other_apps }}"
+nginx_apps: "{{ xarr_apps + other_apps }}"
