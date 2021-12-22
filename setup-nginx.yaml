@@ -1,0 +1,55 @@
+---
+- hosts: all
+  tags: [ nginx ]
+  become: yes
+
+  tasks:
+    - name: Installing nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Creating the required folders
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - /etc/nginx/snippets
+        - /etc/nginx/sites-enabled
+        - /opt/ssl
+
+    - name: Adding the SSL snippet
+      copy:
+        src: files/ssl.conf
+        dest: /etc/nginx/snippets/ssl.conf
+
+    - name: Generating dhparam
+      openssl_dhparam:
+        path: /opt/ssl/dhparam.pem
+        size: 2048
+
+    - name: Copy SSL certs
+      copy:
+        src: "files/{{ base_url }}.{{ item }}"
+        dest: "/opt/ssl/{{ base_url }}.{{ item }}"
+        mode: '0600'
+      with_items:
+        - crt
+        - key
+
+    - name: Updating nginx conf
+      copy:
+        src: files/nginx.conf
+        dest: /etc/nginx/nginx.conf
+
+    - name: Creating nginx config for each app
+      template:
+        src: templates/nginx_app.conf.j2
+        dest: "/etc/nginx/sites-enabled/{{ item.app_name }}.conf"
+      with_items: "{{ nginx_apps }}"
+
+    - name: "Enabling & starting nginx"
+      service:
+        name: nginx
+        enabled: yes
+        state: restarted

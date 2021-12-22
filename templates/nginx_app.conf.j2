@@ -1,0 +1,32 @@
+server {
+    listen      80;
+    server_name {{ item.short_name }}.{{ base_url }};
+
+    # Using 307 ensure that the client will follow the redirection on POST requests
+    # Cf. https://softwareengineering.stackexchange.com/questions/99894/why-doesnt-http-have-post-redirect
+    return 307 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name {{ item.short_name }}.{{ base_url }};
+
+    include snippets/ssl.conf;
+
+    ssl_certificate /opt/ssl/{{ base_url }}.crt;
+    ssl_certificate_key /opt/ssl/{{ base_url }}.key;
+
+    # @TODO: Add more stuff to be sure everything works as intended
+    # If needed
+    location / {
+        proxy_pass http://localhost:{{ item.port}};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $host;
+
+        proxy_pass_request_headers      on;
+        proxy_set_header X-Forwarded-For $remote_addr;
+    }
+}
+

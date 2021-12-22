@@ -10,7 +10,7 @@
       service:
         name: docker
         enabled: yes
-        state: started
+        state: restarted
 
     - name: Setup pip3 for dependencies
       become: yes

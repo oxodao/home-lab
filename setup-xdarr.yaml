@@ -2,11 +2,6 @@
 - hosts: all
   tags: [ xdarr ]
 
-  vars:
-    xdarr_apps:
-      - { app_name: sonarr, port: 8989, image: 'lscr.io/linuxserver/sonarr' }
-      - { app_name: radarr, port: 7878, image: 'lscr.io/linuxserver/radarr' }
-
   tasks:
     - name: Create app dirs
       file:

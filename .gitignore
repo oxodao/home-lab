@@ -1,5 +1,5 @@
-/templates/*.crt
-/templates/*.key
+/files/*.crt
+/files/*.key
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,visualstudiocode,intellij+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,visualstudiocode,intellij+all

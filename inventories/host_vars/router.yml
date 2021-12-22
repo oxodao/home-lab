@@ -6,3 +6,13 @@ docker_users:
   - oxodao
 
 main_user: oxodao
+
+base_url: router.lan
+
+xdarr_apps:
+  - { app_name: sonarr, short_name: 'srr', port: 8989, image: 'lscr.io/linuxserver/sonarr' }
+  - { app_name: radarr, short_name: 'rrr', port: 7878, image: 'lscr.io/linuxserver/radarr' }
+
+other_apps: []
+
+nginx_apps: "{{ xdarr_apps + other_apps }}"

@@ -14,7 +14,7 @@
 ```
 $ ansible-galaxy install -r requirements.yaml --force
 $ ansible-galaxy collection install community.docker
-
+$ ansible-galaxy collection install community.crypto
 ```
 
 ### Becoming your own CA
@@ -27,7 +27,7 @@ If you do not plan to have more than one domain (i.e. probably one machine, rout
 
 [How to create your CA certificates](/be-your-own-ca.md)
 
-No matter which option you choose, put your certificate in templates/{router.lan.crt,router.lan.key}
+No matter which option you choose, put your certificate in files/{BASE_URL.crt,BASE_URL.key}
 
 ### Installing
 
