@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+    {{ item.app_name }}:
+        image: lscr.io/linuxserver/{{ item.app_name }}
+        restart: unless-stopped
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Paris
+        volumes:
+            - ./data:/config
+            - ./medias:/medias
+            - /home/{{ main_user }}/downloads:/downloads
+        ports:
+            - "127.0.0.1:{{ item.port }}:{{ item.port }}"

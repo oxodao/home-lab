@@ -1,0 +1,8 @@
+---
+ntp_timezone: Europe/Paris
+
+docker_edition: 'ce'
+docker_users:
+  - oxodao
+
+main_user: oxodao

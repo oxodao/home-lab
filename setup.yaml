@@ -1,0 +1,5 @@
+---
+- import_playbook: setup-ntp.yaml
+- import_playbook: setup-docker.yaml
+- import_playbook: setup-xdarr.yaml
+- import_playbook: setup-nginx.yaml

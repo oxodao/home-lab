@@ -1,0 +1,29 @@
+---
+- hosts: all
+  tags: [ xdarr ]
+
+  vars:
+    xdarr_apps:
+      - { app_name: sonarr, port: 8989, image: 'lscr.io/linuxserver/sonarr' }
+      - { app_name: radarr, port: 7878, image: 'lscr.io/linuxserver/radarr' }
+
+  tasks:
+    - name: Create app dirs
+      file:
+        path: /home/{{ main_user }}/{{ item.app_name }}
+        state: directory
+        mode: '0700'
+      with_items: "{{ xdarr_apps }}"
+
+    - name: Creating docker-compose for Sonarr / Radarr
+      template: 
+        src: templates/docker-compose-xdarr.yml.j2
+        dest: /home/{{ main_user }}/{{ item.app_name }}/docker-compose.yml
+      with_items: "{{ xdarr_apps }}"
+
+    - name: Starting Sonarr / Radarr
+      docker_compose:
+        project_src: /home/{{ main_user }}/{{ item.app_name}}
+        state: present
+        restarted: yes
+      with_items: "{{ xdarr_apps }}"

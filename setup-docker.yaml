@@ -1,0 +1,26 @@
+---
+- hosts: all
+  tags: [ docker ]
+
+  tasks:
+    - import_role: { name: 'geerlingguy.docker' }
+      become: yes
+
+    - name: Enable docker
+      service:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Setup pip3 for dependencies
+      become: yes
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Install the Docker SDK (Automating docker-compose)
+      become: yes
+      pip:
+        name: [PyYAML, docker, 'docker-compose']
+        state: latest
+        umask: '0022'
