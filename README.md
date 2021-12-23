@@ -9,7 +9,10 @@
 - [x] CA for internal SSL certificates
 - [ ] Jellyfin
 - [ ] Torrent client
-- [x] Sonarr / Radarr (Still misses torrent client link + creating user account)
+- [x] Sonarr / Radarr / Jackett
+    - [ ] Torrent client link
+    - [ ] Creating user accounts
+    - [ ] Auto-linking to Jackett
 - [ ] Mounting SMB storage (Sonarr/radarr destination on a NAS)
 - [ ] Wireguard ? (For safe remote access to internal network)
 

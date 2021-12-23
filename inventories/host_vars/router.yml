@@ -90,10 +90,18 @@ forwarded_dns_servers:
 
 #region xarr
 xarr_apps:
+  - app_name: jackett
+    short_name: 'jkt'
+    port: 9117
+    image: 'lscr.io/linuxserver/jackett'
+    config_db: []
+
   - app_name: sonarr
     short_name: 'srr'
     port: 8989
     image: 'lscr.io/linuxserver/sonarr'
+    mount_medias: True
+    edit_config: True
     config_db:
       - { key: 'firstdayofweek', value: 1 }
       - { key: 'calendarweekcolumnheader', value: "'ddd DD/MM'" }
@@ -105,6 +113,8 @@ xarr_apps:
     short_name: 'rrr'
     port: 7878
     image: 'lscr.io/linuxserver/radarr'
+    mount_medias: True
+    edit_config: True
     config_db:
       - { key: 'firstdayofweek', value: 1 }
       - { key: 'calendarweekcolumnheader', value: "'ddd DD/MM'" }

@@ -18,13 +18,13 @@
         src: templates/dnsmasq.conf.j2
         dest: /etc/dnsmasq.conf
 
-    - name: Config hosts
-      template:
-        src: templates/hosts.j2
-        dest: /etc/hosts
+    # - name: Config hosts
+    #   template:
+    #     src: templates/hosts.j2
+    #     dest: /etc/hosts
 
     - name: "Enable & start the dnsmasq service"
       service:
         name: dnsmasq
         enabled: yes
-        state: started
+        state: restarted

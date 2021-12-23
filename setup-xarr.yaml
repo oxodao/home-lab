@@ -58,6 +58,7 @@
         regexp: '\<AuthenticationMethod\>([a-zA-Z0-9])*\<\/AuthenticationMethod\>'
         line: '<AuthenticationMethod>Forms</AuthenticationMethod>'
       with_items: "{{ xarr_apps }}"
+      when: item.edit_config is defined and item.edit_config == True
 
     - name: "Starting *arr again"
       docker_compose:

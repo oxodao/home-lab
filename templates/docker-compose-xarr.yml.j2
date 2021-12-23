@@ -8,9 +8,6 @@ services:
             - PUID=1000
             - PGID=1000
             - TZ=Europe/Paris
-        volumes:
-            - ./data:/config
-            - ./medias:/medias
-            - /home/{{ main_user }}/downloads:/downloads
+        volumes: ['./data:/config', '/home/{{ main_user }}/downloads:/downloads'{% if item.mount_medias is defined and item.mount_medias == True %}, './medias:/medias'{% endif %}]
         ports:
             - "127.0.0.1:{{ item.port }}:{{ item.port }}"
