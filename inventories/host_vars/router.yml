@@ -1,14 +1,23 @@
 ---
+main_user: oxodao
+base_url: router.lan
+base_ip: ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])
+
+machines:
+  - { hostname: 'severusdesk', short_name: 'severusdesk', ip: '192.168.1.12', description: 'Main desktop computer' }
+  - { hostname: 'severusphone', short_name: 'op6', ip: '192.168.1.181', description: 'Main phone' }
+  - { hostname: 'severusbook', short_name: 'laptop', ip: '192.168.1.75', description: 'Main laptop (Huawei)' }
+
+
+#region Geerlingguy stuff
 ntp_timezone: Europe/Paris
 
 docker_edition: 'ce'
 docker_users:
   - oxodao
+#endregion
 
-main_user: oxodao
-
-base_url: router.lan
-
+#region xarr
 xarr_apps:
   - app_name: sonarr
     short_name: 'srr'
@@ -33,7 +42,10 @@ xarr_apps:
       - { key: 'timeformat', value: "'HH:mm'" }
       - { key: 'movieinfolanguage', value: 2 }
       - { key: 'uilanguage', value: 2 }
+#endregion
 
+#region nginx
 other_apps: []
 
 nginx_apps: "{{ xarr_apps + other_apps }}"
+#endregion

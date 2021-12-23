@@ -7,6 +7,7 @@
       apt:
         name: sqlite3
         state: present
+      become: true
 
     - name: Create app dirs
       file:
@@ -26,7 +27,6 @@
       docker_compose:
         project_src: /home/{{ main_user }}/{{ item.app_name }}
         state: present
-        restarted: yes
       with_items: "{{ xarr_apps }}"
 
     - name: "Stopping *arr"
