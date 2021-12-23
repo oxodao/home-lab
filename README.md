@@ -2,7 +2,7 @@
 
 ## Features
 
-- [ ] Setup PiHole or something similar
+- [ ] Setup dnsmasq DHCP
 - [ ] LAN domain name resolution
 - [x] CA for internal SSL certificates
 - [ ] Jellyfin
@@ -39,7 +39,7 @@ The machine on which it will be setup needs to have Debian 11 and a ssh server r
 
 Then simply run:
 ```
-$ ansible-playbook -i inventories/hosts setup.yaml
+$ ansible-playbook -i inventories/hosts setup.yaml --ask-vault-pass
 ```
 
 

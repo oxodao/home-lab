@@ -5,6 +5,10 @@
 
   tasks:
     - import_role: { name: 'geerlingguy.docker' }
+      vars:
+        docker_edition: 'ce'
+        docker_users:
+          - "{{ main_user }}"
 
     - name: Enable docker
       service:

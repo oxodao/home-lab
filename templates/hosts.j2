@@ -1,0 +1,3 @@
+{% for m in current_machines %}
+{{ m.ip }}    {{ m.short_name }}.{{ tld }} {{ m.hostname }}      # {{ m.description }}
+{% endfor %}
