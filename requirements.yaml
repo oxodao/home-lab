@@ -1,3 +1,9 @@
-- geerlingguy.ntp
-- geerlingguy.docker
-- authsec.pihole
+collections:
+  - community.docker
+  - community.crypto
+
+roles:
+  - geerlingguy.ntp
+  - geerlingguy.docker
+  - authsec.pihole
+  - jnv.unattended-upgrades

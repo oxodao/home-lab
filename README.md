@@ -2,22 +2,18 @@
 
 ## Features
 
+- [x] Basic server setup (Unattended upgrades / NTP)
+- [ ] Firewall
 - [ ] Setup dnsmasq DHCP
-- [ ] LAN domain name resolution
+- [x] LAN domain name resolution
 - [x] CA for internal SSL certificates
 - [ ] Jellyfin
 - [ ] Torrent client
 - [x] Sonarr / Radarr (Still misses torrent client link + creating user account)
+- [ ] Mounting SMB storage (Sonarr/radarr destination on a NAS)
 - [ ] Wireguard ? (For safe remote access to internal network)
 
 ## Usage
-
-### Installing dependencies
-```
-$ ansible-galaxy install -r requirements.yaml --force
-$ ansible-galaxy collection install community.docker
-$ ansible-galaxy collection install community.crypto
-```
 
 ### Becoming your own CA
 
@@ -39,9 +35,10 @@ The machine on which it will be setup needs to have Debian 11 and a ssh server r
 
 Then simply run:
 ```
+$ ansible-galaxy install -r requirements.yaml --force
+$ ansible-galaxy collection install -r requirements.yaml --force
 $ ansible-playbook -i inventories/hosts setup.yaml --ask-vault-pass
 ```
-
 
 ## Tested on
 
