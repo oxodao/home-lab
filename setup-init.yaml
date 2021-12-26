@@ -1,0 +1,39 @@
+---
+- hosts: all
+  become: yes
+  tags: [ init ]
+
+  tasks:
+    - import_role: { name: 'geerlingguy.ntp' }
+    - import_role: { name: 'jnv.unattended-upgrades' }
+
+    - name: Disabling password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regex: ^(# *)?PasswordAuthentication
+        line: PasswordAuthentication no
+
+    - name: Restart ssh deamon
+      service:
+        name: sshd
+        state: restarted
+
+    - name: Setting the hostname
+      hostname:
+        name: "{{ hostname }}.{{ tld }}"
+
+    - name: Replace hosts file
+      lineinfile:
+        dest: /etc/hosts
+        regexp: '^127\.0\.0\.1[ \t]+localhost'
+        line: '127.0.0.1 localhost {{ hostname }}.{{ tld }}'
+        state: present
+
+    - name: Ensure locale exists
+      locale_gen:
+        name: fr_FR.UTF-8
+        state: present
+
+    - name: Installing some softwares
+      apt:
+        name: [ zip, unzip, fuse, zsh ]

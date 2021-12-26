@@ -1,7 +1,0 @@
----
-- hosts: all
-  tags: [ ntp ]
-
-  tasks:
-    - import_role: { name: 'geerlingguy.ntp' }
-      become: yes

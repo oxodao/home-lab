@@ -1,0 +1,45 @@
+---
+- hosts: all
+  become: yes
+  tags: [ utils ]
+
+  tasks:
+    - name: Create the fuse group (Appimages)
+      group:
+        name: fuse
+        state: present
+
+    - name: Install fuse
+      package:
+        name: fuse
+        state: present
+
+    - name: Enable fuse
+      modprobe:
+        name: fuse
+        state: present
+
+    - name: Downloading latest neovim
+      get_url:
+        url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+        dest: /opt/nvim.appimage
+        owner: "{{ main_user }}"
+        group: "{{ main_user }}"
+        mode: 0777
+
+    - name: Removing the vim bin
+      apt:
+        name: vim
+        state: absent
+
+    - name: Symlinking it
+      file:
+        src: /opt/nvim.appimage
+        dest: /usr/bin/nvim
+        state: link
+
+    - name: Symlinking it (as vim)
+      file:
+        src: /opt/nvim.appimage
+        dest: /usr/bin/vim
+        state: link
