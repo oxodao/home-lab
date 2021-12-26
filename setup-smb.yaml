@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: yes
+  tags: [ smb ]
+
+  tasks:
+    - name: Installing the cifs-utils package
+      apt:
+        name: cifs-utils
+        state: present
+
+    - name: Copying password file
+      copy:
+        src: files/smb_password_share
+        dest: /root/smb_password_share
+        owner: root
+        group: root
+        mode: 0600
+
+    # https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not
+    # Not working as intended (VM freeze when trying to move in / out of mount after loosing network)
+    - name: Add the mounting points
+      mount:
+        name: "{{ item.path }}"
+        src: "{{ item.mount_url }}"
+        fstype: "cifs"
+        opts: "{{ (item.opts + ',') if item.opts is defined else ''}}_netdev"
+        state: present
+      with_items: "{{ smb_shares }}"

@@ -1,5 +1,6 @@
 /files/*.crt
 /files/*.key
+/files/smb_password_share
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,visualstudiocode,intellij+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,visualstudiocode,intellij+all

@@ -20,7 +20,7 @@
 
     - name: Setting the hostname
       hostname:
-        name: "{{ hostname }}.{{ tld }}"
+        name: "{{ base_url }}"
 
     - name: Replace hosts file
       lineinfile:

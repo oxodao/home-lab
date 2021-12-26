@@ -9,6 +9,13 @@ base_mac: '11:22:33:44:55:66'
 
 ntp_timezone: Europe/Paris
 
+#region Samba shares
+smb_shares:
+  - mount_url: //192.168.1.100/Shares
+    path: /media/shares
+    opts: 'rw,credentials=/root/smb_password_share'
+#endregion
+
 # I vaulted my MAC addresses, not that they are too sensitive, but I'd rather not have them public anyway
 # Too sensitive data (i.e. passwords won't even be pushed, even vaulted)
 other_machines:

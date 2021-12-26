@@ -7,13 +7,13 @@
 - [ ] Setup dnsmasq DHCP
 - [x] LAN domain name resolution
 - [x] CA for internal SSL certificates
+- [x] Mounting SMB storage (Sonarr/radarr destination on a NAS)
 - [ ] Jellyfin
 - [ ] Torrent client
 - [x] Sonarr / Radarr / Jackett
     - [ ] Torrent client link
     - [ ] Creating user accounts
     - [ ] Auto-linking to Jackett
-- [ ] Mounting SMB storage (Sonarr/radarr destination on a NAS)
 - [ ] Wireguard ? (For safe remote access to internal network)
 
 ## Usage
@@ -28,11 +28,19 @@ If you do not plan to have more than one domain (i.e. probably one machine, rout
 
 [How to create your CA certificates](/be-your-own-ca.md)
 
-No matter which option you choose, put your certificate in files/{BASE_URL.crt,BASE_URL.key}
 
 ### Installing
 
-Edit the inventories/hosts to fill with your details, then edit the inventories/host_vars/router.yaml to configure it as you wish.
+Edit the inventories/hosts to fill with your details, then edit the `inventories/host_vars/router.yaml` to configure it as you wish.
+
+No matter which option you choose for SSL, put your certificate for `{{hostname}}.{{tld}}` in files/{BASE_URL.crt,BASE_URL.key}
+
+You also need to create a file at that contains your samba password and add it to the smb_shares variable (Copy the dist file without the extension):
+```
+username=USERNAME
+password=PASSWORD
+domain=WORKGROUP
+```
 
 The machine on which it will be setup needs to have Debian 11 and a ssh server running and a user with password-less sudo permissions.
 
