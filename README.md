@@ -1,4 +1,4 @@
-# Home Router
+# Home lab
 
 ## Features
 

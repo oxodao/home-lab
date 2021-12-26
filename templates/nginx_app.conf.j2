@@ -16,6 +16,9 @@ server {
     ssl_certificate /opt/ssl/{{ base_url }}.crt;
     ssl_certificate_key /opt/ssl/{{ base_url }}.key;
 
+    # Useful for paperless
+    client_max_body_size 100M;
+
     # @TODO: Add more stuff to be sure everything works as intended
     # If needed
     location / {

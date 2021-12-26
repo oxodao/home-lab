@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tags: [ paperless ]
+
+  tasks:
+    - name: Create app dirs
+      file:
+        path: /home/{{ main_user }}/paperless
+        state: directory
+        mode: '0700'
+
+    - name: "Creating docker-compose for paperless"
+      template:
+        src: files/docker-compose-paperless.yml
+        dest: /home/{{ main_user }}/paperless/docker-compose.yml
+
+    - name: "Starting *arr"
+      docker_compose:
+        project_src: /home/{{ main_user }}/paperless
+        state: present

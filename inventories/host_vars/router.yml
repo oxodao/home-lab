@@ -126,7 +126,10 @@ xarr_apps:
 #endregion
 
 #region nginx
-other_apps: []
+other_apps:
+  - app_name: paperless
+    short_name: 'paper'
+    port: 8000
 
 nginx_apps: "{{ xarr_apps + other_apps }}"
 #endregion

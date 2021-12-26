@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  broker:
+    image: redis:6.0
+    restart: unless-stopped
+
+  webserver:
+    image: jonaswinkler/paperless-ng:latest
+    restart: unless-stopped
+    depends_on:
+      - broker
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./data:/usr/src/paperless/data
+      - ./medias:/usr/src/paperless/media
+      - ./export:/usr/src/paperless/export
+      - ./consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      USERMAP_UID: 1000
+      USERMAP_GID: 1000
+      PAPERLESS_TIME_ZONE: Europe/Paris
+      PAPERLESS_OCR_LANGUAGE: fra
+      #PAPERLESS_SECRET_KEY=change-me
