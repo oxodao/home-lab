@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tags: [ jellyfin ]
+
+  tasks:
+    - name: Create app dirs
+      file:
+        path: /home/{{ main_user }}/jellyfin
+        state: directory
+        mode: '0700'
+
+    - name: "Creating docker-compose for Jellyfin"
+      template:
+        src: templates/docker-compose-jellyfin.yml.j2
+        dest: /home/{{ main_user }}/jellyfin/docker-compose.yml
+
+    - name: "Starting Jellyfin"
+      docker_compose:
+        project_src: /home/{{ main_user }}/jellyfin
+        state: present

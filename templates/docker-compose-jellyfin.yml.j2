@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  jellyfin:
+    image: linuxserver/jellyfin:latest
+    restart: "unless-stopped"
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: 'Europe/Paris'
+      JELLYFIN_PublishedServerUrl: "https://play.{{ base_url }}"
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - /media/shares:/media
+    ports:
+      - "127.0.0.1:8096:8096"
+      - 7359:7359/udp # Autodiscovery
+      - 1900:1900/udp # Autodiscovery

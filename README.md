@@ -9,6 +9,7 @@
 - [x] CA for internal SSL certificates
 - [x] Mounting SMB storage (Sonarr/radarr destination on a NAS)
 - [ ] Jellyfin
+    - [ ] Make accessible externally (nginx + letsencrypt somehow)
 - [ ] Torrent client
 - [x] Sonarr / Radarr / Jackett
     - [ ] Torrent client link

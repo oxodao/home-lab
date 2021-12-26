@@ -137,6 +137,9 @@ other_apps:
   - app_name: paperless
     short_name: 'paper'
     port: 8000
+  - app_name: jellyfin
+    short_name: play
+    port: 8096
 
 nginx_apps: "{{ xarr_apps + other_apps }}"
 #endregion
