@@ -1,0 +1,3 @@
+---
+# All variables I don't want to commit
+SMB_PWD_SHARES: ''

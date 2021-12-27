@@ -36,4 +36,4 @@
 
     - name: Installing some softwares
       apt:
-        name: [ zip, unzip, fuse, zsh ]
+        name: [ zip, unzip, fuse, zsh, rsync ]

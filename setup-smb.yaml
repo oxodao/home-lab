@@ -10,20 +10,21 @@
         state: present
 
     - name: Copying password file
-      copy:
-        src: files/smb_password_share
-        dest: /root/smb_password_share
+      template:
+        src: templates/smb_credentials.j2
+        dest: "/root/smb_creds_{{ item.short_name }}"
         owner: root
         group: root
         mode: 0600
+      with_items: "{{ smb_shares }}"
 
     # https://askubuntu.com/questions/194727/mounting-samba-share-whenever-its-available-unmounting-when-its-not
     # Not working as intended (VM freeze when trying to move in / out of mount after loosing network)
     - name: Add the mounting points
       mount:
-        name: "{{ item.path }}"
+        name: "/media/{{ item.short_name }}"
         src: "{{ item.mount_url }}"
         fstype: "cifs"
-        opts: "{{ (item.opts + ',') if item.opts is defined else ''}}_netdev"
+        opts: "{{ (item.opts + ',') if item.opts is defined else '' }}_netdev,credentials=/root/smb_creds_{{ item.short_name }},uid=1000,gid=1000,umask=022"
         state: present
       with_items: "{{ smb_shares }}"

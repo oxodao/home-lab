@@ -4,11 +4,10 @@
 
 - [x] Basic server setup (Unattended upgrades / NTP)
 - [ ] Firewall
-- [ ] Setup dnsmasq DHCP
 - [x] LAN domain name resolution
 - [x] CA for internal SSL certificates
 - [x] Mounting SMB storage (Sonarr/radarr destination on a NAS)
-- [ ] Jellyfin
+- [x] Jellyfin
     - [ ] Make accessible externally (nginx + letsencrypt somehow)
 - [ ] Torrent client
 - [x] Sonarr / Radarr / Jackett
@@ -35,13 +34,6 @@ If you do not plan to have more than one domain (i.e. probably one machine, rout
 Edit the inventories/hosts to fill with your details, then edit the `inventories/host_vars/router.yaml` to configure it as you wish.
 
 No matter which option you choose for SSL, put your certificate for `{{hostname}}.{{tld}}` in files/{BASE_URL.crt,BASE_URL.key}
-
-You also need to create a file at that contains your samba password and add it to the smb_shares variable (Copy the dist file without the extension):
-```
-username=USERNAME
-password=PASSWORD
-domain=WORKGROUP
-```
 
 The machine on which it will be setup needs to have Debian 11 and a ssh server running and a user with password-less sudo permissions.
 

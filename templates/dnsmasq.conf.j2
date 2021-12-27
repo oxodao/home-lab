@@ -10,12 +10,12 @@ local=/{{ tld }}/
 
 domain={{ base_url }}
 
-# dhcp-range=10.0.0.2,10.0.254.254,24h
+dhcp-range=10.0.0.2,10.0.254.254,24h
 
 {% for m in current_machines %}
 address=/{{m.short_name}}.{{tld}}/{{m.ip}}
-# dhcp-host={{ m.mac }},{{ m.hostname }},{{ m.ip }}
+dhcp-host={{ m.mac }},{{ m.hostname }},{{ m.ip }}
 
 {% endfor %}
 
-# dhcp-option=option:router,{{ base_ip }}
+dhcp-option=option:router,{{ base_ip }}
