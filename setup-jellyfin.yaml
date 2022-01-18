@@ -5,16 +5,16 @@
   tasks:
     - name: Create app dirs
       file:
-        path: /home/{{ main_user }}/jellyfin
+        path: /opt/docker-apps/jellyfin
         state: directory
         mode: '0700'
 
     - name: "Creating docker-compose for Jellyfin"
       template:
-        src: templates/docker-compose-jellyfin.yml.j2
-        dest: /home/{{ main_user }}/jellyfin/docker-compose.yml
+        src: templates/jellyfin/docker-compose.yml.j2
+        dest: /opt/docker-apps/jellyfin/docker-compose.yml
 
     - name: "Starting Jellyfin"
       docker_compose:
-        project_src: /home/{{ main_user }}/jellyfin
+        project_src: /opt/docker-apps/jellyfin
         state: present

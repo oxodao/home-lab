@@ -26,3 +26,38 @@
         name: [PyYAML, docker, 'docker-compose']
         state: latest
         umask: '0022'
+
+    - name: Create apps dir
+      file:
+        path: /opt/docker-apps
+        state: directory
+        mode: '0700'
+
+    - name: Create Database folder
+      file:
+        path: /opt/docker-apps/{{ item }}
+        state: directory
+        mode: '0700'
+      with_items:
+        - database
+        - database/postgres_init
+        - database/postgres_data
+
+    - name: Add init scripts
+      template:
+        src: templates/database/postgres_init/create-users-and-db.sql.j2
+        dest: /opt/docker-apps/database/postgres_init/create-users-and-db.sql
+
+    - name: Create the database docker-compose
+      copy:
+        src: files/database/docker-compose.yml
+        dest: /opt/docker-apps/database/docker-compose.yml
+
+    - name: Create the database network
+      docker_network:
+        name: router_database
+
+    - name: Starting databases
+      docker_compose:
+        project_src: /opt/docker-apps/database
+        state: present

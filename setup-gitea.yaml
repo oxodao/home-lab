@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tags: [ gitea ]
+
+  tasks:
+    - name: Create app dirs
+      file:
+        path: /opt/docker-apps/gitea
+        state: directory
+        mode: '0700'
+
+    - name: "Creating docker-compose for Gitea"
+      copy:
+        src: files/gitea/docker-compose.yml
+        dest: /opt/docker-apps/gitea/docker-compose.yml
+
+    - name: "Starting Gitea"
+      docker_compose:
+        project_src: /opt/docker-apps/gitea
+        state: present
+

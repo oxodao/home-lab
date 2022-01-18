@@ -1,8 +1,0 @@
-{% for i in item.config_db %}
-    INSERT OR REPLACE INTO Config (Id, Key, Value)
-    VALUES (
-        COALESCE(COALESCE((SELECT Id FROM Config WHERE Key = '{{ i.key }}'), (SELECT MAX(Id)+1 FROM Config)), 1),
-        '{{ i.key }}',
-        {{ i.value }}
-    );
-{% endfor %}

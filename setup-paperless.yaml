@@ -5,16 +5,16 @@
   tasks:
     - name: Create app dirs
       file:
-        path: /home/{{ main_user }}/paperless
+        path: /opt/docker-apps/paperless
         state: directory
         mode: '0700'
 
     - name: "Creating docker-compose for paperless"
       template:
-        src: files/docker-compose-paperless.yml
-        dest: /home/{{ main_user }}/paperless/docker-compose.yml
+        src: files/paperless/docker-compose.yml
+        dest: /opt/docker-apps/paperless/docker-compose.yml
 
-    - name: "Starting *arr"
+    - name: "Starting Paperless"
       docker_compose:
-        project_src: /home/{{ main_user }}/paperless
+        project_src: /opt/docker-apps/paperless
         state: present

@@ -22,6 +22,11 @@ smb_shares:
     opts: 'rw'
 #endregion
 
+#region databases
+postgres_databases:
+  - { user: gitea, password: gitea, db: gitea }
+#endregion
+
 other_machines:
   - hostname: 'severusdesk'
     short_name: 'severusdesk'
@@ -57,51 +62,15 @@ forwarded_dns_servers:
   - 1.1.1.1
   - 8.8.8.8
 
-#region xarr
-xarr_apps:
-  - app_name: jackett
-    short_name: 'jkt'
-    port: 9117
-    image: 'lscr.io/linuxserver/jackett'
-    config_db: []
-
-  - app_name: sonarr
-    short_name: 'srr'
-    port: 8989
-    image: 'lscr.io/linuxserver/sonarr'
-    mount_medias: True
-    edit_config: True
-    config_db:
-      - { key: 'firstdayofweek', value: 1 }
-      - { key: 'calendarweekcolumnheader', value: "'ddd DD/MM'" }
-      - { key: 'shortdateformat', value: "'YYYY-MM-DD'" }
-      - { key: 'longdateformat', value: "'dddd D MMMM YYYY'" }
-      - { key: 'timeformat', value: "'HH:mm'" }
-
-  - app_name: radarr
-    short_name: 'rrr'
-    port: 7878
-    image: 'lscr.io/linuxserver/radarr'
-    mount_medias: True
-    edit_config: True
-    config_db:
-      - { key: 'firstdayofweek', value: 1 }
-      - { key: 'calendarweekcolumnheader', value: "'ddd DD/MM'" }
-      - { key: 'shortdateformat', value: "'YYYY-MM-DD'" }
-      - { key: 'longdateformat', value: "'dddd D MMMM YYYY'" }
-      - { key: 'timeformat', value: "'HH:mm'" }
-      - { key: 'movieinfolanguage', value: 2 }
-      - { key: 'uilanguage', value: 2 }
-#endregion
-
 #region nginx
-other_apps:
+nginx_apps:
   - app_name: paperless
-    short_name: 'paper'
+    short_name: paper
     port: 8000
   - app_name: jellyfin
     short_name: play
     port: 8096
-
-nginx_apps: "{{ xarr_apps + other_apps }}"
+  - app_name: gitea
+    short_name: git
+    port: 3000
 #endregion

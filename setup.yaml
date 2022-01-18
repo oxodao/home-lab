@@ -4,7 +4,7 @@
 - import_playbook: setup-dnsmasq.yaml
 - import_playbook: setup-smb.yaml
 - import_playbook: setup-docker.yaml
-- import_playbook: setup-xarr.yaml
 - import_playbook: setup-jellyfin.yaml
 - import_playbook: setup-paperless.yaml
+- import_playbook: setup-gitea.yaml
 - import_playbook: setup-nginx.yaml

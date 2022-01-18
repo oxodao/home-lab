@@ -4,7 +4,7 @@
   tags: [ dnsmasq ]
 
   vars:
-    router: { hostname: "{{ hostname }}", short_name: "{{ hostname }}", ip: "{{ base_ip }}", mac: "{{ base_mac }}", description: "Home router"}
+    router: { hostname: "{{ hostname }}", short_name: "{{ hostname }}", ip: "{{ base_ip }}", description: "Home router"}
     current_machines: "{{ other_machines + [ router ] }}"
 
   tasks:
@@ -17,11 +17,6 @@
       template:
         src: templates/dnsmasq.conf.j2
         dest: /etc/dnsmasq.conf
-
-    # - name: Config hosts
-    #   template:
-    #     src: templates/hosts.j2
-    #     dest: /etc/hosts
 
     - name: "Enable & start the dnsmasq service"
       service:
