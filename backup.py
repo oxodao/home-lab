@@ -35,3 +35,11 @@ for app in APPS:
     status = os.system(f'cd /opt/docker-apps/{app} && docker-compose up -d')
     if status != 0:
         print(f'Error while starting {app} again. Skipping...')
+
+alert("-- Docker apps backed up --\n=> Backing up documents")
+
+status = os.system(f'restic --verbose backup --tag paperless_data /media/documents/medias')
+if status != 0:
+    alert('Could not backup paperless data (Those from NAS)')
+
+alert('Backup complete. Please check if any error has occured')
