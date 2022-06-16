@@ -1,7 +1,0 @@
--- Note: CREATEDB seems to not be working :thinking:
-
-{% for d in postgres_databases %}
-CREATE USER router_{{d.user}} ENCRYPTED PASSWORD 'router_{{d.password}}';
-CREATE DATABASE router_{{d.db}};
-GRANT ALL PRIVILEGES ON DATABASE router_{{d.db}} TO router_{{d.user}};
-{% endfor %}

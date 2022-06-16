@@ -22,24 +22,24 @@ smb_shares:
     opts: 'rw'
 #endregion
 
-#region databases
-postgres_databases:
-  - { user: gitea, password: gitea, db: gitea }
-#endregion
-
 other_machines:
-  - hostname: 'severusdesk'
-    short_name: 'severusdesk'
+  - hostname: 'severus'
+    short_name: 'severus'
     ip: '192.168.1.10'
     description: 'Main desktop computer'
 
-  - hostname: 'severusbook'
-    short_name: 'severusbook'
+  - hostname: 'lockhart'
+    short_name: 'lockhart'
     ip: '192.168.1.11'
     description: 'Main laptop (Huawei)'
 
-  - hostname: 'severuspad'
-    short_name: 'severuspad'
+  - hostname: 'remus'
+    short_name: 'remus'
+    ip: '192.168.1.231'
+    description: 'Work laptop (Framework)'
+
+  - hostname: 'tablet'
+    short_name: 'tablet'
     ip: '192.168.1.12'
     description: 'Main tablet'
 
@@ -48,7 +48,7 @@ other_machines:
     ip: '192.168.1.100'
     description: 'Synology NAS'
 
-  - hostname: 'severusphone'
+  - hostname: 'op6'
     short_name: 'op6'
     ip: '192.168.1.13'
     description: 'Main phone'
@@ -59,8 +59,10 @@ other_machines:
     description: 'Main Nintendo Switch'
 
 forwarded_dns_servers:
-  - 1.1.1.1
-  - 8.8.8.8
+  - 2a00:f826:8:2::195
+  - 2a03:4000:4d:c92:88c0:96ff:fec6:b9d
+  - 195.10.195.195
+  - 194.36.144.87
 
 #region nginx
 nginx_apps:
