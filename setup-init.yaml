@@ -26,7 +26,7 @@
       lineinfile:
         dest: /etc/hosts
         regexp: '^127\.0\.0\.1[ \t]+localhost'
-        line: '127.0.0.1 localhost {{ hostname }}.{{ tld }}'
+        line: '127.0.0.1 localhost {{ hostname }}'
         state: present
 
     - name: Ensure locale exists
