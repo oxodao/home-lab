@@ -6,14 +6,12 @@
 - [ ] Firewall
 - [x] LAN domain name resolution
 - [x] CA for internal SSL certificates
-- [x] Mounting SMB storage (Sonarr/radarr destination on a NAS)
+- [x] Mounting SMB storage (Storage for Jellyfin / Paperless)
 - [x] Jellyfin
     - [ ] Make accessible externally (nginx + letsencrypt somehow)
-- [ ] Torrent client
-- [x] Sonarr / Radarr / Jackett
-    - [ ] Torrent client link
-    - [ ] Creating user accounts
-    - [ ] Auto-linking to Jackett
+- [x] Paperless
+- [x] Gitea
+- [ ] Restic backup (Done manually, todo in ansible & auto-restore if possible)
 - [ ] Wireguard ? (For safe remote access to internal network)
 
 ## Usage
@@ -47,4 +45,5 @@ $ ansible-playbook -i inventories/hosts setup.yaml --ask-vault-pass
 ## Tested on
 
 - Debian Bullseye (11) (x86_64 - In Virtualbox - During dev)
+- Debian Bullseye (11) (x86_64 - Lenovo M75q)
 - DietPi (ARM - Maybe, once the thing is working-ish I will try on it)
