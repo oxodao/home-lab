@@ -48,10 +48,16 @@ other_machines:
     ip: '192.168.1.100'
     description: 'Synology NAS'
 
-  - hostname: 'op6'
-    short_name: 'op6'
-    ip: '192.168.1.13'
-    description: 'Main phone'
+### RIP ONEPLUS 6, you will be missed ###
+# - hostname: 'op6'
+    #short_name: 'op6'
+    #ip: '192.168.1.13'
+    #description: 'Main phone'
+
+  - hostname: 'oppo-x3-lite'
+    short_name: 'x3'
+    ip: '192.168.1.33'
+    description: 'Oppo Find x3 lite'
 
   - hostname: 'switch'
     short_name: 'switch'
