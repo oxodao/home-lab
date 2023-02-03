@@ -11,12 +11,12 @@ ntp_timezone: Europe/Paris
 #region Samba shares
 smb_shares:
   - short_name: shares
-    mount_url: //192.168.1.100/Shares
+    mount_url: //192.168.14.100/Shares
     username: shares
     password: '{{ SMB_PWD_SHARES }}'
     opts: 'rw'
   - short_name: documents
-    mount_url: //192.168.1.100/Documents
+    mount_url: //192.168.14.100/Documents
     username: documents
     password: '{{ SMB_PWD_DOCUMENTS }}'
     opts: 'rw'
@@ -25,27 +25,27 @@ smb_shares:
 other_machines:
   - hostname: 'severus'
     short_name: 'severus'
-    ip: '192.168.1.10'
+    ip: '192.168.14.10'
     description: 'Main desktop computer'
 
   - hostname: 'lockhart'
     short_name: 'lockhart'
-    ip: '192.168.1.11'
+    ip: '192.168.14.11'
     description: 'Main laptop (Huawei)'
 
   - hostname: 'remus'
     short_name: 'remus'
-    ip: '192.168.1.231'
+    ip: '192.168.14.231'
     description: 'Work laptop (Framework)'
 
   - hostname: 'tablet'
     short_name: 'tablet'
-    ip: '192.168.1.12'
+    ip: '192.168.14.12'
     description: 'Main tablet'
 
   - hostname: 'nas'
     short_name: 'nas'
-    ip: '192.168.1.100'
+    ip: '192.168.14.100'
     description: 'Synology NAS'
 
 ### RIP ONEPLUS 6, you will be missed ###
@@ -56,19 +56,19 @@ other_machines:
 
   - hostname: 'oppo-x3-lite'
     short_name: 'x3'
-    ip: '192.168.1.33'
+    ip: '192.168.14.33'
     description: 'Oppo Find x3 lite'
 
   - hostname: 'switch'
     short_name: 'switch'
-    ip: '192.168.1.14'
+    ip: '192.168.14.14'
     description: 'Main Nintendo Switch'
 
 forwarded_dns_servers:
   - 2a00:f826:8:2::195
   - 2a03:4000:4d:c92:88c0:96ff:fec6:b9d
-  - 195.10.195.195
-  - 194.36.144.87
+  - 1.1.1.1
+  - 8.8.8.8
 
 #region nginx
 nginx_apps:
