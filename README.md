@@ -35,6 +35,8 @@ No matter which option you choose for SSL, put your certificate for `{{hostname}
 
 The machine on which it will be setup needs to have Debian 11 and a ssh server running and a user with password-less sudo permissions.
 
+During debian setup, choose "ssh server" & "usual system tools"
+
 Then simply run:
 ```
 $ ansible-galaxy install -r requirements.yaml --force

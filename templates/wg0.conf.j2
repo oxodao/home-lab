@@ -1,0 +1,13 @@
+[Interface]
+Address = 192.168.66.1/24
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o enp2s0f0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o enp2s0f0 -j MASQUERADE
+ListenPort = {{ wireguard_server_port }}
+PrivateKey = {{ wireguard_server_private_key }}
+
+{% for m in vpn_machines %}
+[Peer] # {{ m.short_name }}
+PublicKey = {{m.public_key}}
+AllowedIPs = 192.168.66.{{m.ip_endpoint}}/32
+
+{% endfor %}

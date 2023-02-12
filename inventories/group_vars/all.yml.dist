@@ -1,3 +1,5 @@
 ---
 # All variables I don't want to commit
 SMB_PWD_SHARES: ''
+
+wireguard_server_private_key: ''

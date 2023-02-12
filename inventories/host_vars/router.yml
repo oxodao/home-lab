@@ -8,6 +8,8 @@ base_ip: "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0])
 
 ntp_timezone: Europe/Paris
 
+wireguard_server_port: 48666
+
 #region Samba shares
 smb_shares:
   - short_name: shares
@@ -47,6 +49,14 @@ other_machines:
     short_name: 'nas'
     ip: '192.168.14.100'
     description: 'Synology NAS'
+
+vpn_machines:
+  - short_name: 'remus'
+    public_key: ''
+    ip_endpoint: 231
+  - short_name: 'lockhart'
+    public_key: ''
+    ip_endpoint: 11
 
 ### RIP ONEPLUS 6, you will be missed ###
 # - hostname: 'op6'

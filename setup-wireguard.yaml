@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tags: [ wireguard ]
+
+  tasks:
+    - name: Setup wireguard tools
+      apt:
+        name: wireguard-tools
+        state: present
+
+    - name: Adding config
+      template:
+        src: templates/wg0.conf.j2
+        dest: /etc/wireguard/wg0.conf
+
+    - name: Enabling the service
+      service:
+        name: wg-quick@wg0.service
+        enabled: yes
+        state: restarted
